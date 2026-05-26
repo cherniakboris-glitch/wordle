@@ -4,7 +4,7 @@
 import sys
 import json
 import hashlib
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 # ── color helpers ────────────────────────────────────────────────────────────
@@ -175,7 +175,7 @@ def record_result(stats, won, attempts):
     if won:
         stats["won"] += 1
         stats["distribution"][str(attempts)] += 1
-        if stats["last_win_date"] == str(date.today().replace(day=date.today().day - 1)):
+        if stats["last_win_date"] == str(date.today() - timedelta(days=1)):
             stats["streak"] += 1
         else:
             stats["streak"] = 1
